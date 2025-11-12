@@ -2,6 +2,9 @@ import { HeroUIProvider } from "@heroui/react";
 import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router";
 
+import { AppLayout } from "@/components";
+import { AdvertisementItemPage, AdvertisementListPage, ModerStatsPage } from "@/pages";
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -22,9 +25,9 @@ export const App = () => {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            {/* <Route index element={<TasksPage />} /> */}
-            {/* <Route path="item/:id" element={<TaskPage />} /> */}
-            {/* <Route path="stats" element={<TaskCreatePage />} /> */}
+            <Route index element={<AdvertisementListPage />} />
+            <Route path="item/:id" element={<AdvertisementItemPage />} />
+            <Route path="stats" element={<ModerStatsPage />} />
           </Route>
           {/* TODO: добавить сраницу с ошибками */}
           <Route path="*" element={<Navigate to="/" replace />} />
