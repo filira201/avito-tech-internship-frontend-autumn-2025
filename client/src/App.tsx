@@ -1,5 +1,11 @@
-const App = () => {
-  return <div>App</div>;
-};
+import { Button, HeroUIProvider } from "@heroui/react";
 
-export default App;
+export const App = () => {
+  return (
+    <HeroUIProvider>
+      <div>
+        <Button>Click me</Button>
+      </div>
+    </HeroUIProvider>
+  );
+};
