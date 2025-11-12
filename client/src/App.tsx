@@ -1,11 +1,35 @@
-import { Button, HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider } from "@heroui/react";
+import { useEffect } from "react";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
+
+  return null;
+};
 
 export const App = () => {
   return (
     <HeroUIProvider>
-      <div>
-        <Button>Click me</Button>
-      </div>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            {/* <Route index element={<TasksPage />} /> */}
+            {/* <Route path="item/:id" element={<TaskPage />} /> */}
+            {/* <Route path="stats" element={<TaskCreatePage />} /> */}
+          </Route>
+          {/* TODO: добавить сраницу с ошибками */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
     </HeroUIProvider>
   );
 };
