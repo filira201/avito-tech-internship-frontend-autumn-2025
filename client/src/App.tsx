@@ -28,12 +28,13 @@ export const App = () => {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<AppLayout />}>
-              <Route index element={<AdvertisementListPage />} />
+              <Route index element={<Navigate to="/list" replace />} />
+              <Route path="list" element={<AdvertisementListPage />} />
               <Route path="item/:id" element={<AdvertisementItemPage />} />
               <Route path="stats" element={<ModerStatsPage />} />
             </Route>
             {/* TODO: добавить сраницу с ошибками */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/list" replace />} />
           </Routes>
         </BrowserRouter>
       </Provider>
