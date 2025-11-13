@@ -1,1 +1,2 @@
-export { api } from "./baseApi";
+export * from "./baseApi";
+export * from "./advertisementsApi";

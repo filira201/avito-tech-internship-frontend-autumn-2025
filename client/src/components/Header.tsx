@@ -9,9 +9,7 @@ import {
 } from "@heroui/react";
 import { useCallback, useState } from "react";
 
-import { HeaderBrandLink } from "./HeaderBrandLink";
-import { HeaderNavLinksList } from "./HeaderNavLinksList";
-import { HeaderThemeSwitcher } from "./HeaderThemeSwitcher";
+import { HeaderBrandLink, HeaderNavLinksList, HeaderThemeSwitcher } from "@/components";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
