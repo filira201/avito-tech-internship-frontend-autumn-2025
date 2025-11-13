@@ -8,3 +8,6 @@ export { Footer } from "./Footer";
 export { AdList } from "./AdList";
 export { AdPagination } from "./AdPagination";
 export { AdCard } from "./AdCard";
+export { AdFilters } from "./AdFilters";
+export { AdSort } from "./AdSort";
+export { AdSearch } from "./AdSearch";

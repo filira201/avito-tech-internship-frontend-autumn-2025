@@ -1,4 +1,4 @@
-import { AdList } from "@/components";
+import { AdFilters, AdList, AdSearch, AdSort } from "@/components";
 
 export const AdvertisementListPage = () => {
   return (
@@ -9,6 +9,9 @@ export const AdvertisementListPage = () => {
       >
         Список объявлений
       </h1>
+      <AdSearch />
+      <AdFilters />
+      <AdSort />
       <AdList />
     </div>
   );

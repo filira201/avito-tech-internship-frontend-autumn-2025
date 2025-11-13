@@ -1,7 +1,10 @@
-import type { AD_PRIORITIES, AD_STATUSES } from "./constants";
+import type { AD_PRIORITIES, AD_STATUSES, SORT_BY, SORT_ORDER } from "./constants";
 
 export type AdStatus = (typeof AD_STATUSES)[number];
 export type AdPriority = (typeof AD_PRIORITIES)[number];
+
+export type SortBy = (typeof SORT_BY)[number];
+export type SortOrder = (typeof SORT_ORDER)[number];
 
 export type Seller = {
   id: number;
@@ -36,4 +39,16 @@ export type Pagination = {
 export type AdsListResponse = {
   ads: Advertisement[];
   pagination: Pagination;
+};
+
+export type AdsQueryParams = {
+  page?: number;
+  limit?: number;
+  status?: string[];
+  categoryId?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  search?: string;
+  sortBy?: SortBy;
+  sortOrder?: SortOrder;
 };

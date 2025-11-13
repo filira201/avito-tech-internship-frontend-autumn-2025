@@ -22,7 +22,8 @@
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.9.5",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "use-debounce": "^10.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

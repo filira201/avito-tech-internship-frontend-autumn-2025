@@ -13,3 +13,18 @@ export const formatDate = (dateString: string): string => {
     day: "numeric",
   });
 };
+
+// Валидирует числовое значение цены
+export const validatePrice = (value: string): number | undefined => {
+  if (value === "") {
+    return undefined;
+  }
+
+  const numValue = Number(value);
+
+  if (isNaN(numValue) || numValue < 0) {
+    return undefined;
+  }
+
+  return numValue;
+};

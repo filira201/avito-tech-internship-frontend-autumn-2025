@@ -1,42 +1,12 @@
-import { useCallback, useEffect } from "react";
-import { useSearchParams } from "react-router";
-
 import { useGetAdsQuery } from "@/api";
 import { AdCard, AdPagination, Loader } from "@/components";
-import { ITEMS_PER_PAGE } from "@/lib";
+import { useAdsParsingSearchParams } from "@/lib";
 
 export const AdList = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get("page") || "1");
-  const limit = ITEMS_PER_PAGE;
+  const queryParams = useAdsParsingSearchParams();
 
   // Получаем данные с сервера
-  const { data, isLoading, isError, isFetching } = useGetAdsQuery({ page, limit });
-
-  // Скролл к верху при изменении страницы
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [page]);
-
-  // Обработчик изменения страницы
-  const handlePageChange = useCallback(
-    (page: number) => {
-      if (data?.pagination?.totalPages === undefined) {
-        return;
-      }
-
-      if (page < 1 || page > data?.pagination?.totalPages) {
-        return;
-      }
-
-      searchParams.set("page", page.toString());
-      setSearchParams(searchParams);
-    },
-    [setSearchParams, searchParams, data?.pagination?.totalPages]
-  );
+  const { data, isLoading, isError, isFetching } = useGetAdsQuery(queryParams);
 
   // Обработка загрузки
   if (isLoading || isFetching) {
@@ -44,7 +14,6 @@ export const AdList = () => {
   }
 
   // Обработка ошибки
-  // TODO: Добавить обработку ошибки
   if (isError) {
     return <h1>Ошибка загрузки объявлений</h1>;
   }
@@ -60,7 +29,7 @@ export const AdList = () => {
         </p>
       </div>
 
-      {/* Список карточек */}
+      {/* Список карточек  */}
       {ads.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[40vh]">
           <p className="text-xl text-default-500">Объявления не найдены</p>
@@ -75,11 +44,7 @@ export const AdList = () => {
           </div>
 
           {/* Пагинация */}
-          {pagination && pagination.totalPages > 1 && (
-            <div className="flex justify-center">
-              <AdPagination page={page} totalPages={pagination.totalPages} handlePageChange={handlePageChange} />
-            </div>
-          )}
+          {pagination && <AdPagination page={queryParams.page || 1} totalPages={pagination.totalPages} />}
         </>
       )}
     </div>
