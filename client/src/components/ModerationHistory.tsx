@@ -1,5 +1,5 @@
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import {
   formatDateTime,
@@ -17,9 +17,9 @@ const MAX_VISIBLE_ITEMS = 1;
 export const ModerationHistory = ({ history }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleExpandToggle = useCallback(() => {
+  const handleExpandToggle = () => {
     setIsExpanded(!isExpanded);
-  }, [isExpanded]);
+  };
 
   const shouldShowToggle = history.length > MAX_VISIBLE_ITEMS;
   const visibleHistory = isExpanded || !shouldShowToggle ? history : history.slice(0, MAX_VISIBLE_ITEMS);

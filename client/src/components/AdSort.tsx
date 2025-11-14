@@ -1,5 +1,5 @@
 import { Select, SelectItem } from "@heroui/react";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useSearchParams } from "react-router";
 
 import { SORT_OPTIONS, useAdsUpdateSearchParams, type SortBy, type SortOrder } from "@/lib";
@@ -20,17 +20,14 @@ export const AdSort = () => {
     return "";
   }, [sortBy, sortOrder]);
 
-  const handleSortChange = useCallback(
-    (value: string) => {
-      if (value === "") {
-        updateSearchParams({ sortBy: undefined, sortOrder: undefined, page: 1 });
-      } else {
-        const [newSortBy, newSortOrder] = value.split("-") as [SortBy, SortOrder];
-        updateSearchParams({ sortBy: newSortBy, sortOrder: newSortOrder, page: 1 });
-      }
-    },
-    [updateSearchParams]
-  );
+  const handleSortChange = (value: string) => {
+    if (value === "") {
+      updateSearchParams({ sortBy: undefined, sortOrder: undefined, page: 1 });
+    } else {
+      const [newSortBy, newSortOrder] = value.split("-") as [SortBy, SortOrder];
+      updateSearchParams({ sortBy: newSortBy, sortOrder: newSortOrder, page: 1 });
+    }
+  };
 
   return (
     <div className="mb-4">

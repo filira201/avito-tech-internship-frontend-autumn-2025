@@ -1,6 +1,5 @@
 import { Button, Card, CardBody, CardHeader, Checkbox, CheckboxGroup, Input, Select, SelectItem } from "@heroui/react";
 import { ListFilter } from "lucide-react";
-import { useCallback } from "react";
 import { useSearchParams } from "react-router";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -18,13 +17,10 @@ export const AdFilters = () => {
   const minPriceValue = minPrice?.toString() || "";
   const maxPriceValue = maxPrice?.toString() || "";
 
-  const handleCategoryChange = useCallback(
-    (value: string) => {
-      const categoryIdValue = value === "" ? undefined : Number(value);
-      updateSearchParams({ categoryId: categoryIdValue, page: 1 });
-    },
-    [updateSearchParams]
-  );
+  const handleCategoryChange = (value: string) => {
+    const categoryIdValue = value === "" ? undefined : Number(value);
+    updateSearchParams({ categoryId: categoryIdValue, page: 1 });
+  };
 
   const handleMinPriceChange = useDebouncedCallback((value: string) => {
     const numValue = validatePrice(value);
@@ -46,16 +42,13 @@ export const AdFilters = () => {
     updateSearchParams({ maxPrice: numValue, page: 1 });
   }, 300);
 
-  const handleStatusChange = useCallback(
-    (selectedStatuses: string[]) => {
-      updateSearchParams({ status: selectedStatuses, page: 1 });
-    },
-    [updateSearchParams]
-  );
+  const handleStatusChange = (selectedStatuses: string[]) => {
+    updateSearchParams({ status: selectedStatuses, page: 1 });
+  };
 
-  const handleResetFilters = useCallback(() => {
+  const handleResetFilters = () => {
     updateSearchParams({ status: [], categoryId: undefined, minPrice: undefined, maxPrice: undefined, page: 1 });
-  }, [updateSearchParams]);
+  };
 
   const hasActiveFilters =
     status.length > 0 || categoryId !== undefined || minPrice !== undefined || maxPrice !== undefined;
