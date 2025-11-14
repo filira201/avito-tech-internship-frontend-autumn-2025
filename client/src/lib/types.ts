@@ -1,4 +1,11 @@
-import type { AD_PRIORITIES, AD_STATUSES, SORT_BY, SORT_ORDER } from "./constants";
+import type {
+  AD_PRIORITIES,
+  AD_STATUSES,
+  MODERATION_ACTIONS,
+  REJECTION_REASONS,
+  SORT_BY,
+  SORT_ORDER,
+} from "./constants";
 
 export type AdStatus = (typeof AD_STATUSES)[number];
 export type AdPriority = (typeof AD_PRIORITIES)[number];
@@ -14,6 +21,18 @@ export type Seller = {
   registeredAt: string;
 };
 
+export type ModerationAction = (typeof MODERATION_ACTIONS)[number];
+
+export type ModerationHistory = {
+  id: number;
+  moderatorId: number;
+  moderatorName: string;
+  action: ModerationAction;
+  reason: string | null;
+  comment: string | null;
+  timestamp: string;
+};
+
 export type Advertisement = {
   id: number;
   title: string;
@@ -27,6 +46,8 @@ export type Advertisement = {
   updatedAt: string;
   images: string[];
   seller: Seller;
+  characteristics: Record<string, string>;
+  moderationHistory: ModerationHistory[];
 };
 
 export type Pagination = {
@@ -51,4 +72,16 @@ export type AdsQueryParams = {
   search?: string;
   sortBy?: SortBy;
   sortOrder?: SortOrder;
+};
+
+export type RejectionReason = (typeof REJECTION_REASONS)[number];
+
+export type RejectAdRequest = {
+  reason: RejectionReason;
+  comment?: string;
+};
+
+export type RequestChangesAdRequest = {
+  reason: RejectionReason;
+  comment?: string;
 };
