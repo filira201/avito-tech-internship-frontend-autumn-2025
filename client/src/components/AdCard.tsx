@@ -1,6 +1,13 @@
 import { Card, CardBody, CardHeader, Chip, Image, Link } from "@heroui/react";
 
-import { formatDate, formatPrice, statusColor, statusLabel, type Advertisement } from "@/lib";
+import {
+  checkIsUrgentPriority,
+  formatDateTime,
+  formatPrice,
+  statusColor,
+  statusLabel,
+  type Advertisement,
+} from "@/lib";
 
 type Props = {
   ad: Advertisement;
@@ -8,7 +15,7 @@ type Props = {
 };
 
 export const AdCard = ({ ad, href }: Props) => {
-  const isUrgent = ad.priority === "urgent";
+  const isUrgent = checkIsUrgentPriority(ad.priority);
 
   return (
     <Link href={href} className="h-full">
@@ -31,7 +38,7 @@ export const AdCard = ({ ad, href }: Props) => {
           </div>
         </CardHeader>
         <CardBody className="gap-2 flex flex-col">
-          <h3 title={ad.title} className="text-lg font-semibold line-clamp-2">
+          <h3 title={ad.title} className="text-lg font-bold line-clamp-2">
             {ad.title}
           </h3>
           <Chip color={statusColor[ad.status]} size="md" variant="flat" className="self-start">
@@ -43,7 +50,7 @@ export const AdCard = ({ ad, href }: Props) => {
               Категория: <span className="text-default-700">{ad.category}</span>
             </p>
             <p>
-              Дата: <span className="text-default-700">{formatDate(ad.createdAt)}</span>
+              Дата: <span className="text-default-700">{formatDateTime(ad.createdAt)}</span>
             </p>
           </div>
         </CardBody>
