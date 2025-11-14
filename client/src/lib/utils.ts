@@ -1,17 +1,8 @@
+import type { AdPriority } from "./types";
+
 // Форматирует цену с разделителями тысяч и символом валюты
 export const formatPrice = (price: number): string => {
   return `${price.toLocaleString("ru-RU")} ₽`;
-};
-
-// Форматирует дату в читаемый формат
-export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-
-  return date.toLocaleDateString("ru-RU", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 };
 
 // Валидирует числовое значение цены
@@ -27,4 +18,21 @@ export const validatePrice = (value: string): number | undefined => {
   }
 
   return numValue;
+};
+
+// Форматирует дату и время в читаемый формат
+export const formatDateTime = (dateString: string): string => {
+  const date = new Date(dateString);
+
+  return date.toLocaleString("ru-RU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
+export const checkIsUrgentPriority = (priority: AdPriority): boolean => {
+  return priority === "urgent";
 };
