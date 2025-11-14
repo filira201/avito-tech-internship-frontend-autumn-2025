@@ -23,10 +23,10 @@ export const AdSort = () => {
   const handleSortChange = useCallback(
     (value: string) => {
       if (value === "") {
-        updateSearchParams({ sortBy: undefined, sortOrder: undefined });
+        updateSearchParams({ sortBy: undefined, sortOrder: undefined, page: 1 });
       } else {
         const [newSortBy, newSortOrder] = value.split("-") as [SortBy, SortOrder];
-        updateSearchParams({ sortBy: newSortBy, sortOrder: newSortOrder });
+        updateSearchParams({ sortBy: newSortBy, sortOrder: newSortOrder, page: 1 });
       }
     },
     [updateSearchParams]
