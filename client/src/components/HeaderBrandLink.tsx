@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 const HEADER_BRAND_LINK_PROPS = {
-  to: "/",
+  to: "/list",
   "aria-label": "Перейти на главнаю страницу",
   className: "font-bold text-large transition-colors hover:text-foreground-500",
 } as const;
