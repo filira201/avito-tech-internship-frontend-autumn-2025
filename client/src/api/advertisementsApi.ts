@@ -1,6 +1,13 @@
 import { api } from "./baseApi";
 
-import { ITEMS_PER_PAGE, type AdsListResponse, type AdsQueryParams } from "@/lib";
+import {
+  ITEMS_PER_PAGE,
+  type AdsListResponse,
+  type AdsQueryParams,
+  type Advertisement,
+  type RejectAdRequest,
+  type RequestChangesAdRequest,
+} from "@/lib";
 
 export const advertisementsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -15,10 +22,55 @@ export const advertisementsApi = api.injectEndpoints({
       },
       providesTags: ["Advertisements"],
     }),
+
+    getAdById: builder.query<Advertisement, number>({
+      query: (id) => ({
+        url: `/ads/${id}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, id) => [{ type: "Advertisements", id }],
+    }),
+
+    approveAd: builder.mutation<{ message: string; ad: Advertisement }, number>({
+      query: (id) => ({
+        url: `/ads/${id}/approve`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Advertisements"],
+    }),
+
+    rejectAd: builder.mutation<{ message: string; ad: Advertisement }, { id: number; body: RejectAdRequest }>({
+      query: ({ id, body }) => ({
+        url: `/ads/${id}/reject`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Advertisements"],
+    }),
+
+    requestChangesAd: builder.mutation<
+      { message: string; ad: Advertisement },
+      { id: number; body: RequestChangesAdRequest }
+    >({
+      query: ({ id, body }) => ({
+        url: `/ads/${id}/request-changes`,
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: ["Advertisements"],
+    }),
   }),
 });
 
-export const { useGetAdsQuery } = advertisementsApi;
+export const {
+  useGetAdsQuery,
+  useGetAdByIdQuery,
+  useApproveAdMutation,
+  useRejectAdMutation,
+  useRequestChangesAdMutation,
+  useLazyGetAdByIdQuery,
+} = advertisementsApi;
 // TODO: Мб все таки можно по нормальному потом сделать, надо попробовать
 // Формирует query строку для запроса списка объявлений
 
