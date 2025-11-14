@@ -1,3 +1,10 @@
+import { AdItem, ModerationActions } from "@/components";
+
 export const AdvertisementItemPage = () => {
-  return <div>AdvertisementItemPage</div>;
+  return (
+    <div>
+      <AdItem />
+      <ModerationActions />
+    </div>
+  );
 };
