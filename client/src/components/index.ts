@@ -26,3 +26,4 @@ export { StatsDecisionsChart } from "./StatsDecisionsChart";
 export { StatsCategoriesChart } from "./StatsCategoriesChart";
 export { StatsChartSkeleton } from "./Skeletons/StatsChartSkeleton";
 export { StatsCards } from "./StatsCards";
+export { AdListSkeleton } from "./Skeletons/AdListSkeleton";

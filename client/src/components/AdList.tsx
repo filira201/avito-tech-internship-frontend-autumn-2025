@@ -1,5 +1,5 @@
 import { useGetAdsQuery } from "@/api";
-import { AdCard, AdPagination, Loader } from "@/components";
+import { AdCard, AdListSkeleton, AdPagination } from "@/components";
 import { useAdsParsingSearchParams } from "@/lib";
 
 export const AdList = () => {
@@ -10,7 +10,7 @@ export const AdList = () => {
 
   // Обработка загрузки
   if (isLoading || isFetching) {
-    return <Loader />;
+    return <AdListSkeleton />;
   }
 
   // Обработка ошибки
