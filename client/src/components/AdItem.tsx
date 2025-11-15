@@ -5,7 +5,7 @@ import {
   AdCharacteristics,
   AdImageGallery,
   AdHead,
-  Loader,
+  AdItemSkeleton,
   ModerationHistory,
   SellerInfo,
   AdDescription,
@@ -16,11 +16,16 @@ export const AdItem = () => {
   const adId = id ? Number(id) : null;
 
   // Загружаем детальную информацию об объявлении
-  const { data: ad, isLoading, isError } = useGetAdByIdQuery(adId as number, { skip: adId === null });
+  const {
+    data: ad,
+    isLoading,
+    isFetching,
+    isError,
+  } = useGetAdByIdQuery(adId as number, { skip: adId === null });
 
   // Обработка загрузки
-  if (isLoading) {
-    return <Loader />;
+  if (isLoading || isFetching) {
+    return <AdItemSkeleton />;
   }
 
   // Обработка ошибки
