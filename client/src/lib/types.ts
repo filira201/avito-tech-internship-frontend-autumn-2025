@@ -5,6 +5,7 @@ import type {
   REJECTION_REASONS,
   SORT_BY,
   SORT_ORDER,
+  STATS_PERIOD,
 } from "./constants";
 
 export type AdStatus = (typeof AD_STATUSES)[number];
@@ -85,3 +86,38 @@ export type RequestChangesAdRequest = {
   reason: RejectionReason;
   comment?: string;
 };
+
+// Типы для статистики
+export type StatsPeriod = (typeof STATS_PERIOD)[number];
+
+export type StatsQueryParams = {
+  period?: StatsPeriod;
+  startDate?: string;
+  endDate?: string;
+};
+
+export type StatsSummary = {
+  totalReviewed: number;
+  totalReviewedToday: number;
+  totalReviewedThisWeek: number;
+  totalReviewedThisMonth: number;
+  approvedPercentage: number;
+  rejectedPercentage: number;
+  requestChangesPercentage: number;
+  averageReviewTime: number;
+};
+
+export type ActivityData = {
+  date: string;
+  approved: number;
+  rejected: number;
+  requestChanges: number;
+};
+
+export type DecisionsData = {
+  approved: number;
+  rejected: number;
+  requestChanges: number;
+};
+
+export type CategoriesData = Record<string, number>;
