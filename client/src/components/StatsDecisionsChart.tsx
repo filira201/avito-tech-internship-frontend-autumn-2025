@@ -18,9 +18,9 @@ export const StatsDecisionsChart = () => {
 
   // Форматируем данные для круговой диаграммы
   const chartData = [
-    { name: moderationActionLabel.approved, value: data.approved },
-    { name: moderationActionLabel.rejected, value: data.rejected },
-    { name: moderationActionLabel.requestChanges, value: data.requestChanges },
+    { name: moderationActionLabel.approved, value: Number(data.approved.toFixed(0)) },
+    { name: moderationActionLabel.rejected, value: Number(data.rejected.toFixed(0)) },
+    { name: moderationActionLabel.requestChanges, value: Number(data.requestChanges.toFixed(0)) },
   ];
 
   // Фильтруем данные с нулевыми значениями для лучшего отображения
@@ -74,14 +74,10 @@ export const StatsDecisionsChart = () => {
                   backgroundColor: "hsl(var(--heroui-content1))",
                   border: "1px solid hsl(var(--heroui-default-200))",
                   borderRadius: "8px",
-                  color: "hsl(var(--heroui-foreground))",
-                }}
-                labelStyle={{
-                  color: "hsl(var(--heroui-foreground))",
-                  fontWeight: "600",
                 }}
                 itemStyle={{
                   color: "hsl(var(--heroui-foreground))",
+                  fontWeight: "700",
                 }}
               />
               <Legend />

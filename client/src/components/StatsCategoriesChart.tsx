@@ -51,14 +51,12 @@ export const StatsCategoriesChart = () => {
                   backgroundColor: "hsl(var(--heroui-content1))",
                   border: "1px solid hsl(var(--heroui-default-200))",
                   borderRadius: "8px",
-                  color: "hsl(var(--heroui-foreground))",
                 }}
                 labelStyle={{
-                  color: "hsl(var(--heroui-foreground))",
-                  fontWeight: "600",
+                  fontWeight: "700",
                 }}
                 itemStyle={{
-                  color: "hsl(var(--heroui-foreground))",
+                  fontWeight: "500",
                 }}
               />
               <Bar dataKey="count" fill={CHART_COLORS.pending} name="Количество" />
