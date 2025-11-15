@@ -69,22 +69,22 @@ export const StatsDecisionsChart = () => {
                   return <Cell key={`cell-${entry.name}`} fill={CHART_COLORS[colorKey]} />;
                 })}
               </Pie>
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "hsl(var(--heroui-content1))",
-                border: "1px solid hsl(var(--heroui-default-200))",
-                borderRadius: "8px",
-                color: "hsl(var(--heroui-foreground))",
-              }}
-              labelStyle={{
-                color: "hsl(var(--heroui-foreground))",
-                fontWeight: "600",
-              }}
-              itemStyle={{
-                color: "hsl(var(--heroui-foreground))",
-              }}
-            />
-            <Legend />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--heroui-content1))",
+                  border: "1px solid hsl(var(--heroui-default-200))",
+                  borderRadius: "8px",
+                  color: "hsl(var(--heroui-foreground))",
+                }}
+                labelStyle={{
+                  color: "hsl(var(--heroui-foreground))",
+                  fontWeight: "600",
+                }}
+                itemStyle={{
+                  color: "hsl(var(--heroui-foreground))",
+                }}
+              />
+              <Legend />
             </PieChart>
           </ResponsiveContainer>
         </div>

@@ -16,12 +16,7 @@ export const AdItem = () => {
   const adId = id ? Number(id) : null;
 
   // Загружаем детальную информацию об объявлении
-  const {
-    data: ad,
-    isLoading,
-    isFetching,
-    isError,
-  } = useGetAdByIdQuery(adId as number, { skip: adId === null });
+  const { data: ad, isLoading, isFetching, isError } = useGetAdByIdQuery(adId as number, { skip: adId === null });
 
   // Обработка загрузки
   if (isLoading || isFetching) {
