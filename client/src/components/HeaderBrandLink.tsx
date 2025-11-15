@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router";
 
 const HEADER_BRAND_LINK_PROPS = {
@@ -11,10 +12,11 @@ type Props = {
   brandText: string;
 };
 
-export const HeaderBrandLink = ({ onClick, brandText }: Props) => {
+// eslint-disable-next-line prefer-arrow-callback
+export const HeaderBrandLink = memo(function HeaderBrandLink({ onClick, brandText }: Props) {
   return (
     <Link {...HEADER_BRAND_LINK_PROPS} onClick={onClick}>
       {brandText}
     </Link>
   );
-};
+});

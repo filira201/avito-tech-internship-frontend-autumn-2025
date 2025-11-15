@@ -27,8 +27,11 @@ export const ModerationActions = () => {
     }
   };
 
-  const handleRequestChangesModalOpen = useCallback(() => setIsRequestChangesModalOpen(true), []);
-  const handleRejectModalOpen = useCallback(() => setIsRejectModalOpen(true), []);
+  const handleRequestChangesModalOpen = () => setIsRequestChangesModalOpen(true);
+  const handleRejectModalOpen = () => setIsRejectModalOpen(true);
+
+  const handleRequestChangesModalClose = useCallback(() => setIsRequestChangesModalOpen(false), []);
+  const handleRejectModalClose = useCallback(() => setIsRejectModalOpen(false), []);
 
   const handleReject = useCallback(
     async (reason: string, comment?: string) => {
@@ -111,7 +114,7 @@ export const ModerationActions = () => {
 
       <ModerationActionModal
         isOpen={isRejectModalOpen}
-        onClose={() => setIsRejectModalOpen(false)}
+        onClose={handleRejectModalClose}
         onConfirm={handleRejectConfirm}
         isLoading={isRejectLoading}
         title="Отклонить объявление"
@@ -123,7 +126,7 @@ export const ModerationActions = () => {
 
       <ModerationActionModal
         isOpen={isRequestChangesModalOpen}
-        onClose={() => setIsRequestChangesModalOpen(false)}
+        onClose={handleRequestChangesModalClose}
         onConfirm={handleRequestChangesConfirm}
         isLoading={isRequestChangesLoading}
         title="Вернуть на доработку"

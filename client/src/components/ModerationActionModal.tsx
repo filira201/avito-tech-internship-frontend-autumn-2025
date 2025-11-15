@@ -10,7 +10,7 @@ import {
   RadioGroup,
   Textarea,
 } from "@heroui/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import { REJECTION_REASONS, type RejectionReason } from "@/lib";
 
@@ -26,7 +26,8 @@ type Props = {
   confirmButtonColor: "danger" | "warning";
 };
 
-export const ModerationActionModal = ({
+// eslint-disable-next-line prefer-arrow-callback
+export const ModerationActionModal = memo(function ModerationActionModal({
   isOpen,
   onClose,
   onConfirm,
@@ -36,7 +37,7 @@ export const ModerationActionModal = ({
   inputPlaceholder,
   confirmButtonLabel,
   confirmButtonColor,
-}: Props) => {
+}: Props) {
   const [selectedReason, setSelectedReason] = useState<RejectionReason | "">("");
   const [customReason, setCustomReason] = useState("");
   const [comment, setComment] = useState("");
@@ -125,4 +126,4 @@ export const ModerationActionModal = ({
       </ModalContent>
     </Modal>
   );
-};
+});

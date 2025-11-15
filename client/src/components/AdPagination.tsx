@@ -1,5 +1,5 @@
 import { Pagination } from "@heroui/react";
-import { useEffect, memo } from "react";
+import { useEffect } from "react";
 
 import { useAdsUpdateSearchParams } from "@/lib";
 
@@ -8,7 +8,7 @@ type Props = {
   totalPages: number;
 };
 
-export const AdPagination = memo<Props>(({ page, totalPages }) => {
+export const AdPagination = ({ page, totalPages }: Props) => {
   const updateSearchParams = useAdsUpdateSearchParams();
   // Скролл к верху при изменении страницы
   // TODO: посмотреть, не багаеться ли оно
@@ -48,4 +48,4 @@ export const AdPagination = memo<Props>(({ page, totalPages }) => {
       />
     </div>
   );
-});
+};
