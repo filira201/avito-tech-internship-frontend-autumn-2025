@@ -72,3 +72,12 @@ export const REJECTION_REASONS = [
   "Подозрение на мошенничество",
   "Другое",
 ] as const;
+
+export const STATS_PERIOD = ["today", "week", "month", "custom"] as const;
+
+export const CHART_COLORS = {
+  pending: "#006FEE",
+  approved: "#17C964",
+  rejected: "#F31260",
+  requestChanges: "#F5A524",
+} as const;
