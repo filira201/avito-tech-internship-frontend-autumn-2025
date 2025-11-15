@@ -1,4 +1,5 @@
-import { Card, CardBody, CardHeader, Chip, Image, Link } from "@heroui/react";
+import { Card, CardBody, CardHeader, Chip, Image } from "@heroui/react";
+import { Link } from "react-router";
 
 import {
   checkIsUrgentPriority,
@@ -18,7 +19,7 @@ export const AdCard = ({ ad, href }: Props) => {
   const isUrgent = checkIsUrgentPriority(ad.priority);
 
   return (
-    <Link href={href} className="h-full">
+    <Link to={href} className="h-full">
       <Card isHoverable className="w-full h-full">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">
