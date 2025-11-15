@@ -1,9 +1,10 @@
 import { useGetAdsQuery } from "@/api";
 import { AdCard, AdListSkeleton, AdPagination } from "@/components";
-import { useAdsParsingSearchParams } from "@/lib";
+import { useAdsParsingSearchParams, usePreservedQuery } from "@/lib";
 
 export const AdList = () => {
   const queryParams = useAdsParsingSearchParams();
+  const preservedQuery = usePreservedQuery();
 
   // Получаем данные с сервера
   const { data, isLoading, isError, isFetching } = useGetAdsQuery(queryParams);
@@ -39,7 +40,7 @@ export const AdList = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {ads.map((ad) => (
               // Компонент карточки объявления
-              <AdCard key={ad.id} ad={ad} href={`/item/${ad.id}`} />
+              <AdCard key={ad.id} ad={ad} href={`/item/${ad.id}${preservedQuery}`} />
             ))}
           </div>
 
