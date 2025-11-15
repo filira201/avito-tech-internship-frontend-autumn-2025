@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router";
 
+import { NotFoundPage } from "./pages/NotFoundPage";
+
 import { AppLayout } from "@/components";
 import { AdvertisementItemPage, AdvertisementListPage, ModerStatsPage } from "@/pages";
 import { store } from "@/store";
@@ -32,9 +34,8 @@ export const App = () => {
               <Route path="list" element={<AdvertisementListPage />} />
               <Route path="item/:id" element={<AdvertisementItemPage />} />
               <Route path="stats" element={<ModerStatsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
-            {/* TODO: добавить сраницу с ошибками */}
-            <Route path="*" element={<Navigate to="/list" replace />} />
           </Routes>
         </BrowserRouter>
       </Provider>
