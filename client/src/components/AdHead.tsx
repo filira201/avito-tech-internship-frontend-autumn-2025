@@ -23,7 +23,7 @@ export const AdHead = ({ title, status, priority, category, price, createdAt }: 
 
   return (
     <>
-      <h1 className="font-bold mb-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl">{title}</h1>
+      <h1 className="font-bold mb-2 text-2xl md:text-3xl lg:text-4xl">{title}</h1>
       <div className="flex flex-wrap items-center gap-3 mb-4">
         <Chip color={statusColor[status]} size="lg" variant="flat">
           {statusLabel[status]}
