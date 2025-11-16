@@ -10,8 +10,7 @@ type Props = {
 
 export const AdPagination = ({ page, totalPages }: Props) => {
   const updateSearchParams = useAdsUpdateSearchParams();
-  // Скролл к верху при изменении страницы
-  // TODO: посмотреть, не багаеться ли оно
+  // Скролл к верху при изменении фильторв и т.д.
   useEffect(() => {
     window.scrollTo({
       top: 0,

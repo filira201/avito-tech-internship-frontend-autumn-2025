@@ -9,8 +9,6 @@ const baseQuery = fetchBaseQuery({
 // Делаем еще 2 попытки запроса, если первая не удалась. Дальше нет смысла стучатьяс в ручку
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
-// TODO: Возможно нужно будет подредактировать, когда буду запросы добавлять
-
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithRetry,
