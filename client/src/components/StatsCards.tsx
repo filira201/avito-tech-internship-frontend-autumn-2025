@@ -1,7 +1,5 @@
-import { StatsCardSkeleton } from "./Skeletons/StatsCardsSkeleton";
-
 import { useGetStatsSummaryQuery } from "@/api";
-import { StatsCard, StatsErrorDisplay } from "@/components";
+import { StatsCard, StatsErrorDisplay, StatsCardSkeleton } from "@/components";
 import { type StatsSummary } from "@/lib";
 
 const STATS_CARDS = [
