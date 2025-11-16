@@ -10,7 +10,7 @@ export const statsApi = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["Stats"],
+      providesTags: [{ type: "Stats", id: "SUMMARY" }],
     }),
 
     getActivityChart: builder.query<ActivityData[], StatsQueryParams>({
@@ -19,7 +19,7 @@ export const statsApi = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["Stats"],
+      providesTags: [{ type: "Stats", id: "ACTIVITY" }],
     }),
 
     getDecisionsChart: builder.query<DecisionsData, StatsQueryParams>({
@@ -28,7 +28,7 @@ export const statsApi = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["Stats"],
+      providesTags: [{ type: "Stats", id: "DECISIONS" }],
     }),
 
     getCategoriesChart: builder.query<CategoriesData, StatsQueryParams>({
@@ -37,7 +37,7 @@ export const statsApi = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["Stats"],
+      providesTags: [{ type: "Stats", id: "CATEGORIES" }],
     }),
   }),
 });

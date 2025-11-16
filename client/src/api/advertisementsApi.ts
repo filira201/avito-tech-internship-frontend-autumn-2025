@@ -20,7 +20,13 @@ export const advertisementsApi = api.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["Advertisements"],
+      providesTags: (result) =>
+        result
+          ? [
+              { type: "Advertisements", id: "LIST" },
+              ...result.ads.map((ad) => ({ type: "Advertisements" as const, id: ad.id })),
+            ]
+          : [{ type: "Advertisements", id: "LIST" }],
     }),
 
     getAdById: builder.query<Advertisement, number>({
@@ -36,7 +42,14 @@ export const advertisementsApi = api.injectEndpoints({
         url: `/ads/${id}/approve`,
         method: "POST",
       }),
-      invalidatesTags: ["Advertisements", "Stats"],
+      invalidatesTags: (_result, _error, id) => [
+        { type: "Advertisements", id },
+        { type: "Advertisements", id: "LIST" },
+        { type: "Stats", id: "SUMMARY" },
+        { type: "Stats", id: "ACTIVITY" },
+        { type: "Stats", id: "DECISIONS" },
+        { type: "Stats", id: "CATEGORIES" },
+      ],
     }),
 
     rejectAd: builder.mutation<{ message: string; ad: Advertisement }, { id: number; body: RejectAdRequest }>({
@@ -45,7 +58,14 @@ export const advertisementsApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Advertisements", "Stats"],
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: "Advertisements", id },
+        { type: "Advertisements", id: "LIST" },
+        { type: "Stats", id: "SUMMARY" },
+        { type: "Stats", id: "ACTIVITY" },
+        { type: "Stats", id: "DECISIONS" },
+        { type: "Stats", id: "CATEGORIES" },
+      ],
     }),
 
     requestChangesAd: builder.mutation<
@@ -57,8 +77,14 @@ export const advertisementsApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-
-      invalidatesTags: ["Advertisements", "Stats"],
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: "Advertisements", id },
+        { type: "Advertisements", id: "LIST" },
+        { type: "Stats", id: "SUMMARY" },
+        { type: "Stats", id: "ACTIVITY" },
+        { type: "Stats", id: "DECISIONS" },
+        { type: "Stats", id: "CATEGORIES" },
+      ],
     }),
   }),
 });
@@ -71,6 +97,7 @@ export const {
   useRequestChangesAdMutation,
   useLazyGetAdByIdQuery,
 } = advertisementsApi;
+
 // TODO: Мб все таки можно по нормальному потом сделать, надо попробовать
 // Формирует query строку для запроса списка объявлений
 
