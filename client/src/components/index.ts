@@ -30,5 +30,6 @@ export { StatsCards } from "./StatsCards";
 export { AdListSkeleton } from "./Skeletons/AdListSkeleton";
 export { AdNavigation } from "./AdNavigation";
 export { AdNavigationGoBack } from "./AdNavigationGoBack";
+export { AdNavigationPrevNext } from "./AdNavigationPrevNext";
 export { ErrorDisplay } from "./ErrorDisplay";
 export { StatsErrorDisplay } from "./StatsErrorDisplay";
