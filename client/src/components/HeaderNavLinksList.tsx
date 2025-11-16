@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { memo } from "react";
 import { NavLink } from "react-router";
 
@@ -25,9 +24,7 @@ export const HeaderNavLinksList = memo(function HeaderNavLinksList({ onClick }: 
           onClick={onClick}
           data-testid={testId}
           className={({ isActive }) =>
-            classNames("font-medium text-lg transition-colors hover:text-blue-600", {
-              "text-blue-500": isActive,
-            })
+            `font-medium text-lg transition-colors hover:text-blue-600 ${isActive ? "text-blue-500" : ""}`
           }
         >
           {label}
