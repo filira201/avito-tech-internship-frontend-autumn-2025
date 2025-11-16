@@ -98,7 +98,6 @@ export const {
   useLazyGetAdByIdQuery,
 } = advertisementsApi;
 
-// TODO: Мб все таки можно по нормальному потом сделать, надо попробовать
 // Формирует query строку для запроса списка объявлений
 
 function buildAdsQueryString(params: AdsQueryParams): string {
