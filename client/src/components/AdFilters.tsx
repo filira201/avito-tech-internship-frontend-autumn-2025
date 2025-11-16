@@ -1,5 +1,6 @@
 import { Button, Card, CardBody, CardHeader, Checkbox, CheckboxGroup, Input, Select, SelectItem } from "@heroui/react";
 import { ListFilter } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -17,6 +18,17 @@ export const AdFilters = () => {
   const minPriceValue = minPrice?.toString() || "";
   const maxPriceValue = maxPrice?.toString() || "";
 
+  const [minPriceInput, setMinPriceInput] = useState(minPriceValue);
+  const [maxPriceInput, setMaxPriceInput] = useState(maxPriceValue);
+
+  useEffect(() => {
+    setMinPriceInput(minPriceValue);
+  }, [minPriceValue]);
+
+  useEffect(() => {
+    setMaxPriceInput(maxPriceValue);
+  }, [maxPriceValue]);
+
   const handleCategoryChange = (value: string) => {
     const categoryIdValue = value === "" ? undefined : Number(value);
     updateSearchParams({ categoryId: categoryIdValue, page: 1 });
@@ -25,19 +37,11 @@ export const AdFilters = () => {
   const handleMinPriceChange = useDebouncedCallback((value: string) => {
     const numValue = validatePrice(value);
 
-    if (numValue === undefined && value !== "") {
-      return;
-    }
-
     updateSearchParams({ minPrice: numValue, page: 1 });
   }, 300);
 
   const handleMaxPriceChange = useDebouncedCallback((value: string) => {
     const numValue = validatePrice(value);
-
-    if (numValue === undefined && value !== "") {
-      return;
-    }
 
     updateSearchParams({ maxPrice: numValue, page: 1 });
   }, 300);
@@ -109,30 +113,34 @@ export const AdFilters = () => {
 
             {/* Минимальная цена */}
             <Input
-              key={`minPrice-${minPrice ?? ""}`}
               labelPlacement="outside-top"
               size="lg"
               isClearable
               label="Минимальная цена"
               placeholder="0"
               type="number"
-              defaultValue={minPriceValue}
-              onValueChange={handleMinPriceChange}
+              value={minPriceInput}
+              onValueChange={(value) => {
+                setMinPriceInput(value);
+                handleMinPriceChange(value);
+              }}
               startContent={<span className="text-default-400">₽</span>}
               className="w-full"
             />
 
             {/* Максимальная цена */}
             <Input
-              key={`maxPrice-${maxPrice ?? ""}`}
               labelPlacement="outside-top"
               size="lg"
               isClearable
               label="Максимальная цена"
               placeholder="0"
               type="number"
-              defaultValue={maxPriceValue}
-              onValueChange={handleMaxPriceChange}
+              value={maxPriceInput}
+              onValueChange={(value) => {
+                setMaxPriceInput(value);
+                handleMaxPriceChange(value);
+              }}
               startContent={<span className="text-default-400">₽</span>}
               className="w-full"
             />
