@@ -36,7 +36,7 @@ export const advertisementsApi = api.injectEndpoints({
         url: `/ads/${id}/approve`,
         method: "POST",
       }),
-      invalidatesTags: ["Advertisements"],
+      invalidatesTags: ["Advertisements", "Stats"],
     }),
 
     rejectAd: builder.mutation<{ message: string; ad: Advertisement }, { id: number; body: RejectAdRequest }>({
@@ -45,7 +45,7 @@ export const advertisementsApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Advertisements"],
+      invalidatesTags: ["Advertisements", "Stats"],
     }),
 
     requestChangesAd: builder.mutation<
@@ -58,7 +58,7 @@ export const advertisementsApi = api.injectEndpoints({
         body,
       }),
 
-      invalidatesTags: ["Advertisements"],
+      invalidatesTags: ["Advertisements", "Stats"],
     }),
   }),
 });
