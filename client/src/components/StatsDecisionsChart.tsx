@@ -18,9 +18,9 @@ export const StatsDecisionsChart = () => {
 
   // Форматируем данные для круговой диаграммы
   const chartData = [
-    { name: moderationActionLabel.approved, value: Number(data.approved.toFixed(0)) },
-    { name: moderationActionLabel.rejected, value: Number(data.rejected.toFixed(0)) },
-    { name: moderationActionLabel.requestChanges, value: Number(data.requestChanges.toFixed(0)) },
+    { name: moderationActionLabel.approved, value: Math.round(data.approved) },
+    { name: moderationActionLabel.rejected, value: Math.round(data.rejected) },
+    { name: moderationActionLabel.requestChanges, value: Math.round(data.requestChanges) },
   ];
 
   // Фильтруем данные с нулевыми значениями для лучшего отображения
