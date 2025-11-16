@@ -121,3 +121,31 @@ export type DecisionsData = {
 };
 
 export type CategoriesData = Record<string, number>;
+
+export type NotFoundEndpointError = {
+  error: string;
+  path: string;
+};
+
+export type InternalServerError = {
+  error: string;
+  message: string;
+};
+
+export type NotFoundAdError = {
+  error: string;
+  id: number;
+};
+
+export type BadRequestError = {
+  error: string;
+};
+
+export type ApiErrorData = BadRequestError | NotFoundAdError | NotFoundEndpointError | InternalServerError;
+
+export type ErrorInfo = {
+  title: string;
+  message: string;
+  status?: number;
+  type: "bad_request" | "not_found" | "server_error" | "network_error" | "unknown";
+};

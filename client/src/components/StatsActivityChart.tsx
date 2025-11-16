@@ -2,18 +2,18 @@ import { Card, CardBody, CardHeader } from "@heroui/react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { useGetActivityChartQuery } from "@/api";
-import { StatsChartSkeleton } from "@/components";
+import { StatsChartSkeleton, StatsErrorDisplay } from "@/components";
 import { CHART_COLORS, moderationActionLabel } from "@/lib";
 
 export const StatsActivityChart = () => {
-  const { data, isLoading, isFetching, isError } = useGetActivityChartQuery({ period: "week" });
+  const { data, isLoading, isFetching, isError, error, refetch } = useGetActivityChartQuery({ period: "week" });
 
   if (isLoading || isFetching) {
     return <StatsChartSkeleton />;
   }
 
   if (isError || !data) {
-    return <h1>Error Stats Activity Chart</h1>;
+    return <StatsErrorDisplay error={error} onRetry={refetch} />;
   }
 
   // Данные для графика

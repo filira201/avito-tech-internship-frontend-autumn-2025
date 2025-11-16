@@ -1,5 +1,5 @@
 import { useGetAdsQuery } from "@/api";
-import { AdCard, AdListSkeleton, AdPagination } from "@/components";
+import { AdCard, AdListSkeleton, AdPagination, ErrorDisplay } from "@/components";
 import { useAdsParsingSearchParams, usePreservedQuery } from "@/lib";
 
 export const AdList = () => {
@@ -7,7 +7,7 @@ export const AdList = () => {
   const preservedQuery = usePreservedQuery();
 
   // Получаем данные с сервера
-  const { data, isLoading, isError, isFetching } = useGetAdsQuery(queryParams);
+  const { data, isLoading, isError, isFetching, error, refetch } = useGetAdsQuery(queryParams);
 
   // Обработка загрузки
   if (isLoading || isFetching) {
@@ -16,7 +16,7 @@ export const AdList = () => {
 
   // Обработка ошибки
   if (isError) {
-    return <h1>Ошибка загрузки объявлений</h1>;
+    return <ErrorDisplay error={error} onRetry={refetch} className="m-4" />;
   }
 
   const ads = data?.ads || [];

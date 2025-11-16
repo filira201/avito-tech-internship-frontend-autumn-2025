@@ -2,18 +2,18 @@ import { Card, CardBody, CardHeader } from "@heroui/react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { useGetCategoriesChartQuery } from "@/api";
-import { StatsChartSkeleton } from "@/components";
+import { StatsChartSkeleton, StatsErrorDisplay } from "@/components";
 import { categoryNameById, CHART_COLORS } from "@/lib";
 
 export const StatsCategoriesChart = () => {
-  const { data, isLoading, isFetching, isError } = useGetCategoriesChartQuery({ period: "week" });
+  const { data, isLoading, isFetching, isError, error, refetch } = useGetCategoriesChartQuery({ period: "week" });
 
   if (isLoading || isFetching) {
     return <StatsChartSkeleton />;
   }
 
   if (isError || !data) {
-    return <h1>Error Stats Categories Chart</h1>;
+    return <StatsErrorDisplay error={error} onRetry={refetch} />;
   }
 
   const chartData = Object.entries(data).map(([categoryId, count]) => ({

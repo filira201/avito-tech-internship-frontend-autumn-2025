@@ -9,6 +9,7 @@ import {
   ModerationHistory,
   SellerInfo,
   AdDescription,
+  ErrorDisplay,
 } from "@/components";
 
 export const AdItem = () => {
@@ -16,7 +17,14 @@ export const AdItem = () => {
   const adId = id ? Number(id) : null;
 
   // Загружаем детальную информацию об объявлении
-  const { data: ad, isLoading, isFetching, isError } = useGetAdByIdQuery(adId as number, { skip: adId === null });
+  const {
+    data: ad,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+    refetch,
+  } = useGetAdByIdQuery(adId as number, { skip: adId === null });
 
   // Обработка загрузки
   if (isLoading || isFetching) {
@@ -24,8 +32,8 @@ export const AdItem = () => {
   }
 
   // Обработка ошибки
-  if (isError || !ad || adId === null) {
-    return <h1>Объявление не найдено</h1>;
+  if (isError || !ad) {
+    return <ErrorDisplay error={error} onRetry={refetch} className="m-4" />;
   }
 
   return (

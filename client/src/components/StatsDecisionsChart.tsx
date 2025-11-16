@@ -2,18 +2,18 @@ import { Card, CardBody, CardHeader } from "@heroui/react";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { useGetDecisionsChartQuery } from "@/api";
-import { StatsChartSkeleton } from "@/components";
+import { StatsChartSkeleton, StatsErrorDisplay } from "@/components";
 import { CHART_COLORS, MODERATION_ACTIONS, moderationActionLabel } from "@/lib";
 
 export const StatsDecisionsChart = () => {
-  const { data, isLoading, isFetching, isError } = useGetDecisionsChartQuery({ period: "week" });
+  const { data, isLoading, isFetching, isError, error, refetch } = useGetDecisionsChartQuery({ period: "week" });
 
   if (isLoading || isFetching) {
     return <StatsChartSkeleton />;
   }
 
   if (isError || !data) {
-    return <h1>Error Stats Decisions Chart</h1>;
+    return <StatsErrorDisplay error={error} onRetry={refetch} />;
   }
 
   // Форматируем данные для круговой диаграммы

@@ -1,8 +1,8 @@
 import { StatsCardSkeleton } from "./Skeletons/StatsCardsSkeleton";
 
 import { useGetStatsSummaryQuery } from "@/api";
-import { StatsCard } from "@/components";
-import type { StatsSummary } from "@/lib";
+import { StatsCard, StatsErrorDisplay } from "@/components";
+import { type StatsSummary } from "@/lib";
 
 const STATS_CARDS = [
   {
@@ -44,7 +44,7 @@ const STATS_CARDS = [
 ];
 
 export const StatsCards = () => {
-  const { data: stats, isLoading, isFetching, isError } = useGetStatsSummaryQuery({ period: "week" });
+  const { data: stats, isLoading, isFetching, isError, error, refetch } = useGetStatsSummaryQuery({ period: "week" });
 
   if (isLoading || isFetching) {
     return (
@@ -56,9 +56,12 @@ export const StatsCards = () => {
     );
   }
 
-  // TODO: сюда вставить текст + ретрай для повтора
   if (isError || !stats) {
-    return <h1>Error</h1>;
+    return (
+      <div className="mb-8">
+        <StatsErrorDisplay error={error} onRetry={refetch} />
+      </div>
+    );
   }
 
   return (
