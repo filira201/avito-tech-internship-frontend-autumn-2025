@@ -1,4 +1,4 @@
-import { HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router";
@@ -25,6 +25,18 @@ const ScrollToTop = () => {
 export const App = () => {
   return (
     <HeroUIProvider>
+      <ToastProvider
+        placement="top-right"
+        toastOffset={60}
+        toastProps={{
+          radius: "md",
+          timeout: 4000,
+          shouldShowTimeoutProgress: true,
+          classNames: {
+            closeButton: "opacity-100 absolute right-4 top-1/2 -translate-y-1/2",
+          },
+        }}
+      />
       <Provider store={store}>
         <BrowserRouter>
           <ScrollToTop />

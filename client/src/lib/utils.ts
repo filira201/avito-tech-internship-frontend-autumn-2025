@@ -113,7 +113,7 @@ export function getErrorMessage(error: FetchBaseQueryError | SerializedError | u
       message:
         typeof data === "object" && data !== null && "error" in data
           ? String((data as { error: string }).error)
-          : "Неизвестная ошибка",
+          : "Неизвестная ошибка, попробуйте позже",
       status: typeof status === "number" ? status : undefined,
       type: "unknown",
     };
